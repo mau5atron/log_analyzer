@@ -18,7 +18,7 @@ use std::collections::{HashMap};
 use std::fs::File;
 use std::io::BufRead; 
 use regex::Regex; // Regex is an external crate (package)
-use json::{object, JsonValue}; // json is external crate
+use json::object; // json is external crate
 
 fn get_split_offset(log_section: &str, pattern_find: &str) -> usize {
     let offset = log_section.find(pattern_find).unwrap() + 1;
@@ -34,7 +34,7 @@ fn main(){
     let mut urls_called_hm: HashMap<String, i32> = HashMap::new();
 
     // traversing log file O(n)
-    let file_buffer = std::io::BufReader::new(log_file){
+    if let file_buffer = std::io::BufReader::new(log_file){
         for line in file_buffer.lines(){
             if let Ok(log_line) = line {
                 let splitted: Vec<&str> = log_line.split(" ").collect();
@@ -104,7 +104,7 @@ fn main(){
 
     let mut i: i32 = 0;
     for (url, called) in urls_called_hm.iter(){
-        let obj: JsonValue = object! {
+        let obj = object! {
             request_identifier: url.to_string(),
             called: called.to_string()
         };
