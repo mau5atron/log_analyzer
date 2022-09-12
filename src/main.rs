@@ -113,14 +113,6 @@ fn main(){
                             HashMap<i32, i32>, 4 (response time hashmap to get mode (most occurring response time))
                         )
                     */
-                        // (
-                            // i32, 0 (times endpoint called)
-                            // Vec<i32>, 1 (response times lists for specific endpoint)
-                            // HashMap<String, i32>, 2 (times dynos were called)
-                            // f64, 3 (aggregate response times)
-                            // HashMap<i32, i32>, 4 (response time hashmap to get mode (most occurring response time))
-                        // )
-
                     let url_data_counter: &mut (i32, Vec<i32>, HashMap<String, i32>, f64, HashMap<i32, i32>) = 
                         urls_called_hm
                         .entry(parsed_req_method_with_endpoint)
